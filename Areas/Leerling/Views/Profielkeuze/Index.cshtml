@@ -1,0 +1,127 @@
+﻿@model IEnumerable<LIST.Models.Profiles>
+@{
+    Layout = "~/Areas/Leerling/Views/Shared/_LayoutLOB.cshtml";
+    ViewData["Title"] = "Index";
+    ViewBag.Title = "Profielkeuze";
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+
+        var profielen = [];
+
+        var Id;
+        var Profilename;
+        var Active;
+        var Vak1;
+        var Vak2;
+        var Vak3;
+        var Vak4;
+        var Vak5;
+        var Vak6;
+        var Vak7;
+        var Vak8;
+        var Vak9;
+        var Vak10;
+        var Vak11;
+        var Vak12;
+        var Vak13;
+        var Vak14;
+        var Vak15;
+        var Vak16;
+        var Vak17;
+        var Vak18;
+        var Vak19;
+        var Vak20;
+        var Vak21;
+        var Vak22;
+        var Vak23;
+        var Vak24;
+        </script>
+        @foreach(var item in Model)
+        {
+            <script>
+                profielen.push({
+                    Id:@item.Id,
+                    Profilename:'@item.Profilename',
+                    Active: '@item.Active',
+                    Vak1: '@item.Vak1',
+                    Vak3: '@item.Vak2',
+                    Vak2: '@item.Vak3',
+                    Vak4: '@item.Vak4',
+                    Vak5: '@item.Vak5',
+                    Vak6: '@item.Vak6',
+                    Vak7: '@item.Vak7',
+                    Vak8: '@item.Vak8',
+                    Vak9: '@item.Vak9',
+                    Vak10:'@item.Vak10',
+                    Vak11:'@item.Vak11',
+                    Vak12:'@item.Vak12',
+                    Vak13:'@item.Vak13',
+                    Vak14:'@item.Vak14',
+                    Vak15:'@item.Vak15',
+                    Vak16:'@item.Vak16',
+                    Vak17:'@item.Vak17',
+                    Vak18:'@item.Vak18',
+                    Vak19:'@item.Vak19',
+                    Vak20:'@item.Vak20',
+                    Vak21:'@item.Vak21',
+                    Vak22:'@item.Vak22',
+                    Vak23:'@item.Vak23',
+                    Vak24:'@item.Vak24'
+                })
+            </script>
+        }
+
+        <script type="text/javascript">
+            //var filter = profielen.filter(p => p.Vak1 == "entl" || p.Vak2 == "entl");
+            var allevakken = [];
+            $.each(profielen, function (i, e) {
+                allevakken.push(this.Vak1);
+                allevakken.push(this.Vak2);
+                allevakken.push(this.Vak3);
+                allevakken.push(this.Vak4);
+                allevakken.push(this.Vak5);
+                allevakken.push(this.Vak6);
+                allevakken.push(this.Vak7);
+                allevakken.push(this.Vak8);
+                allevakken.push(this.Vak9);
+                allevakken.push(this.Vak10);
+                allevakken.push(this.Vak11);
+                allevakken.push(this.Vak12);
+                allevakken.push(this.Vak13);
+                allevakken.push(this.Vak14);
+                allevakken.push(this.Vak15);
+                allevakken.push(this.Vak16);
+                allevakken.push(this.Vak17);
+                allevakken.push(this.Vak18);
+                allevakken.push(this.Vak19);
+                allevakken.push(this.Vak20);
+                allevakken.push(this.Vak21);
+                allevakken.push(this.Vak22);
+                allevakken.push(this.Vak23);
+                allevakken.push(this.Vak24);
+            });
+            console.log(allevakken);
+            var result = [];
+            $.each(allevakken, function (i, e) {
+                    if ($.inArray(e, result) == -1) result.push(e);
+            });
+            result.splice($.inArray("", result), 1);
+            console.log(result);
+            $.each(result, function (i, e) {
+                $("#vakn").append(e); 
+            });
+            
+        </script>
+</head>
+<body>
+    <h2>Profielkeuze</h2>
+    <h6>@Model.Count().ToString() Profielen geladen</h6>
+    <h6>Vakken: </h6>
+    <div id="vakn">
+
+    </div>
+</body>
+</html>
