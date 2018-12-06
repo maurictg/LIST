@@ -28,6 +28,7 @@ namespace LIST_Core.Controllers
         {
             HttpContext.Session.Remove("Token");
             HttpContext.Session.Remove("Type");
+            HttpContext.Session.Remove("Username");
             return View("Index");
         }
 
@@ -51,7 +52,7 @@ namespace LIST_Core.Controllers
 
                     }
 
-                    ViewBag.Message = "Welkom " + data.Username + data.Type.ToString();
+                    ViewBag.Message = "Welkom " + data.Username;
                     return View("Index");
 
                 }

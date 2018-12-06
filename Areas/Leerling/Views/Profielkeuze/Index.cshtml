@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<LIST.Models.Profiles>
 @{
     Layout = "~/Areas/Leerling/Views/Shared/_LayoutLOB.cshtml";
-    ViewData["Title"] = "Index";
     ViewBag.Title = "Profielkeuze";
 }
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -38,10 +37,10 @@
         var Vak22;
         var Vak23;
         var Vak24;
-        </script>
-        @foreach(var item in Model)
-        {
-            <script>
+    </script>
+    @foreach (var item in Model)
+    {
+        <script>
                 profielen.push({
                     Id:@item.Id,
                     Profilename:'@item.Profilename',
@@ -71,57 +70,180 @@
                     Vak23:'@item.Vak23',
                     Vak24:'@item.Vak24'
                 })
-            </script>
-        }
-
-        <script type="text/javascript">
-            //var filter = profielen.filter(p => p.Vak1 == "entl" || p.Vak2 == "entl");
-            var allevakken = [];
-            $.each(profielen, function (i, e) {
-                allevakken.push(this.Vak1);
-                allevakken.push(this.Vak2);
-                allevakken.push(this.Vak3);
-                allevakken.push(this.Vak4);
-                allevakken.push(this.Vak5);
-                allevakken.push(this.Vak6);
-                allevakken.push(this.Vak7);
-                allevakken.push(this.Vak8);
-                allevakken.push(this.Vak9);
-                allevakken.push(this.Vak10);
-                allevakken.push(this.Vak11);
-                allevakken.push(this.Vak12);
-                allevakken.push(this.Vak13);
-                allevakken.push(this.Vak14);
-                allevakken.push(this.Vak15);
-                allevakken.push(this.Vak16);
-                allevakken.push(this.Vak17);
-                allevakken.push(this.Vak18);
-                allevakken.push(this.Vak19);
-                allevakken.push(this.Vak20);
-                allevakken.push(this.Vak21);
-                allevakken.push(this.Vak22);
-                allevakken.push(this.Vak23);
-                allevakken.push(this.Vak24);
-            });
-            console.log(allevakken);
-            var result = [];
-            $.each(allevakken, function (i, e) {
-                    if ($.inArray(e, result) == -1) result.push(e);
-            });
-            result.splice($.inArray("", result), 1);
-            console.log(result);
-            $.each(result, function (i, e) {
-                $("#vakn").append(e); 
-            });
-            
         </script>
+    }
+
+    <script type="text/javascript">
+        //var filter = profielen.filter(p => p.Vak1 == "entl" || p.Vak2 == "entl");
+        var allevakken = [];
+        $.each(profielen, function (i, e) {
+            allevakken.push(this.Vak1);
+            allevakken.push(this.Vak2);
+            allevakken.push(this.Vak3);
+            allevakken.push(this.Vak4);
+            allevakken.push(this.Vak5);
+            allevakken.push(this.Vak6);
+            allevakken.push(this.Vak7);
+            allevakken.push(this.Vak8);
+            allevakken.push(this.Vak9);
+            allevakken.push(this.Vak10);
+            allevakken.push(this.Vak11);
+            allevakken.push(this.Vak12);
+            allevakken.push(this.Vak13);
+            allevakken.push(this.Vak14);
+            allevakken.push(this.Vak15);
+            allevakken.push(this.Vak16);
+            allevakken.push(this.Vak17);
+            allevakken.push(this.Vak18);
+            allevakken.push(this.Vak19);
+            allevakken.push(this.Vak20);
+            allevakken.push(this.Vak21);
+            allevakken.push(this.Vak22);
+            allevakken.push(this.Vak23);
+            allevakken.push(this.Vak24);
+        });
+        console.log(allevakken);
+
+        var result = [];
+        $.each(allevakken, function (i, e) {
+            if ($.inArray(e, result) == -1) result.push(e);
+        });
+        result.splice($.inArray("", result), 1);
+        console.log(result);
+
+        /*$.each(result, function (i, e) {
+            $('#vakken1')
+                .append($("<option></option>")
+                    .attr("value", e)
+                    .text(e));
+        });*/
+
+
+    </script>
 </head>
 <body>
     <h2>Profielkeuze</h2>
     <h6>@Model.Count().ToString() Profielen geladen</h6>
-    <h6>Vakken: </h6>
-    <div id="vakn">
-
+    <!--div class="input-field col s6 m2">
+        <select id="vakken1" tabindex="0" class="browser-default"></select>
+        <label>Vakken selecteren</label>
+    </div-->
+    <div class="row">
+        <div class="s12 m6">
+            <h6>Vakken kiezen: </h6>
+            <div class="chips chips-autocomplete chips-placeholder" id="gekozenvakken"></div>
+        </div>
+        <div class="s12 m6">
+            <h6>Profiel: </h6>
+            
+        </div>
     </div>
+    
+
+
+
+    <script type="text/javascript">
+        function getvakken() {
+            var instance = M.Chips.getInstance($('#gekozenvakken'));
+            var gekvakken = [];
+            $.each(instance.chipsData, function (i, e) {
+                gekvakken.push(e.tag);
+            });
+            console.log(gekvakken);
+
+            var gekozen = profielen.filter(BevatVakken)
+                    document.write(JSON.stringify(gekozen));
+
+        }
+
+        //filter werkt niet goed
+        function BevatVakken(val) {
+            var aanwezig = false;
+
+            for (var i = 0; i < gekvakken.length; i++) {
+                if (Object.values(val).indexOf(gekvakken[i]) > -1) {
+                    aanwezig = true;
+                }
+                else{
+                    aanwezig = false;
+                }
+            }
+            return aanwezig
+        }
+
+            
+    </script>
 </body>
 </html>
+
+<!--option value="gd">gd</!--option>
+            <option value="en">en</option>
+            <option value="ne">ne</option>
+            <option value="kv1">kv1</option>
+            <option value="ma1">ma1</option>
+            <option value="lo">lo</option>
+            <option value="wi">wi</option>
+            <option value="tnl">tnl</option>
+            <option value="bi">bi</option>
+            <option value="ak">ak</option>
+            <option value="gs">gs</option>
+            <option value="kmu">kmu</option>
+            <option value="nsk1">nsk1</option>
+            <option value="du">du</option>
+            <option value="ec">ec</option>
+            <option value="nsk2">nsk2</option>
+            <option value="fa">fa</option>
+            <option value="ma">ma</option>
+            <option value="ha">ha</option>
+            <option value="bte">bte</option>
+            <option value="me">me</option>
+            <option value="vz">vz</option>
+            <option value="bha">bha</option>
+            <option value="mr">mr</option>
+            <option value="ict">ict</option>1
+            <option value="tn">tn</option>
+            <option value="bv">bv</option>
+            <option value="mu">mu</option>
+            <option value="ns">ns</option>
+            <option value="osb">osb</option>
+            <option value="la">la</option>
+            <option value="ao">ao</option>
+            <option value="so">so</option>
+            <option value="in">in</option>
+            <option value="pr">pr</option>
+            <option value="netl">netl</option>
+            <option value="dutl">dutl</option>
+            <option value="entl">entl</option>
+            <option value="wisA">wisA</option>
+            <option value="ges">ges</option>
+            <option value="fatl">fatl</option>
+            <option value="gds">gds</option>
+            <option value="ckv">ckv</option>
+            <option value="maat">maat</option>
+            <option value="pws">pws</option>
+            <option value="rkt">rkt</option>
+            <option value="mo">mo</option>
+            <option value="to">to</option>
+            <option value="anw">anw</option>
+            <option value="lob">lob</option>
+            <option value="kcv">kcv</option>
+            <option value="latl">latl</option>
+            <option value="rms">rms</option>
+            <option value="te">te</option>
+            <option value="econ">econ</option>
+            <option value="bsm">bsm</option>
+            <option value="wisC">wisC</option>
+            <option value="biol">biol</option>
+            <option value="nat">nat</option>
+            <option value="schk">schk</option>
+            <option value="wisB">wisB</option>
+            <option value="nlt">nlt</option>
+            <option value="bt">bt</option>
+            <option value="hv">hv</option>
+            <option value="ie">ie</option>
+            <option value="mt">mt</option>
+            <option value="ma2">ma2</option>
+            <option value="btt">btt</option>
+            <option value="btf">btf</option>
+            <option value="btm">btm</option>
+            <option value="ltc">ltc</option-->

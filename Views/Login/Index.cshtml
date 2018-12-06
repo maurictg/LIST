@@ -8,8 +8,8 @@
     if (!string.IsNullOrEmpty(ViewBag.Message))
     {
 
-        string color = (ViewBag.Message.StartsWith("Err")) ? "red" : "grey";
-        if (ViewBag.Message.StartsWith("Err")) { ViewBag.Message = ViewBag.Message.Replace("Err", ""); }
+        string color = (ViewBag.Message.StartsWith("[Err]")) ? "red" : "grey";
+        if (ViewBag.Message.StartsWith("[Err]")) { ViewBag.Message = ViewBag.Message.Replace("[Err]", ""); }
         <script>M.toast({ html: '@ViewBag.Message', classes: '@color' });</script>
     }
 }

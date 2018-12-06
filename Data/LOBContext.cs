@@ -14,6 +14,11 @@ namespace LIST.Data
 
         }
 
+        public LOBContext()
+        {
+
+        }
+
         public DbSet<Profiles> Profielen { get; set; }
         public DbSet<Profile> Profielkeuze { get; set; }
 
@@ -22,6 +27,11 @@ namespace LIST.Data
         {
             modelBuilder.Entity<Profiles>().ToTable("Profiles");
             modelBuilder.Entity<Profile>().ToTable("Profile");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(LIST.Classes.Engine.connectionstring());
         }
     }
 }

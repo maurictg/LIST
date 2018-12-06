@@ -27,6 +27,7 @@ namespace LIST.Areas.Leerling.Controllers
                 var data = _context.Leerlingen
                                    .Where(s => s.Token == token)
                                    .FirstOrDefault();
+                HttpContext.Session.SetInt32("Studentcode", data.Studentcode);
                 return View(data);
             }
             else

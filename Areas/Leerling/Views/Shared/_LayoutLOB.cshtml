@@ -36,6 +36,39 @@
         $(document).ready(function () {
             $('.sidenav').sidenav();
             $('.tabs').tabs();
+            $('select').formSelect();
+            $('.chips').chips();
+            $('.chips-placeholder').chips({
+                placeholder: 'Kies een vak',
+                secondaryPlaceholder: '+Voeg een vak toe..',
+            });
+            $('.chips-autocomplete').chips({
+                autocompleteOptions: {
+                    data: {
+                        'fatl': null,
+                        'dutl': null,
+                        'wisA': null,
+                        'wisB': null,
+                        'bi': null,
+                        'nlt': null,
+                        'mo': null,
+                        'in': null,
+                        'biol': null,
+                        'nat': null,
+                        'ict': null,
+                        'rms': null,
+                        'schk': null,
+                        'bsm': null,
+                        'mu': null,
+                        'ak': null,
+                        'ns': null,
+                        'nsk1': null,
+                        'nsk2': null
+                    },
+                    limit: Infinity,
+                    minLength: 1
+                }
+            });
         });
     </script>
 
