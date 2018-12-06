@@ -1,0 +1,43 @@
+﻿@model LIST.Models.Profile
+@{
+    Layout = "~/Areas/Leerling/Views/Shared/_LayoutLOB.cshtml";
+    ViewBag.Title = "Profiel kiezen";
+
+    if (!string.IsNullOrEmpty(ViewBag.Message))
+    {
+        string color = "grey";
+        if (ViewBag.Message.StartsWith("[Err]")) { ViewBag.Message = ViewBag.Message.Replace("[Err]", ""); color = "red"; }
+        else if (ViewBag.Message.StartsWith("[Suc]")) { ViewBag.Message = ViewBag.Message.Replace("[Suc]", ""); color = "green"; }
+        <script>M.toast({ html: '@ViewBag.Message', classes: '@color' });</script>
+    }
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</head>
+<body>
+    <h2>Profiel kiezen</h2>
+
+    <div class="row center-align">
+        <div class="col s12 m6">
+            @using (Html.BeginForm("KeuzeOpslaan", "Profielkeuze", FormMethod.Post, new { @class = "keuze-form" }))
+            {
+                <p>Welkom @Html.DisplayFor(m => m.Studentcode);</p>
+                <p>Profielnaam: </p>
+                @Html.TextBoxFor(m => m.Profilename, new { @class = "black-text", placeholder = "Profiel" });
+                <p>Afgevinkt: </p>
+                @if (Model.Checked == 1) { <b>Afgevinkt</b>} else { <b>Niet afgevinkt</b>}<br />
+                <input type="submit" class="waves-effect waves-light btn" value="Opslaan"/>
+                
+            }
+        </div>
+
+    </div>
+   
+
+    <script>
+        $('#hrefprofiel').addClass('active');
+        $('#mhrefprofiel').addClass('active');
+    </script>
+
+</body>
+</html>

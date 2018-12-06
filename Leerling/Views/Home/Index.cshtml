@@ -1,0 +1,27 @@
+﻿@model LIST.Models.Student
+@{
+    ViewBag.Title = "Welkom";
+    Layout = "~/Areas/Leerling/Views/Shared/_LayoutLeerling.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript">
+        function load() {
+            M.toast({ html: 'Welkom @Model.Name @Model.Lastname!', classes: 'grey' });
+        }
+    </script>
+</head>
+<body onload="load()">
+
+    <h3>Welkom</h3>
+    <script type="text/javascript">
+        //Actief tabblad selecteren op deze pagina in menubalk
+        $('#mhrefhome').addClass('active');
+        $('#hrefhome').addClass('active');
+    </script>
+
+</body>
+</html>
+
