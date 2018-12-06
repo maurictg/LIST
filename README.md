@@ -1,5 +1,5 @@
 # LIST
-Leering Informatie Systeem Built with: .NET CORE MVC + Entity Framework Core
+Leerling Informatie Systeem Built with: .NET CORE MVC + Entity Framework Core
 LIST means Student Information System.
 
 # Installation
